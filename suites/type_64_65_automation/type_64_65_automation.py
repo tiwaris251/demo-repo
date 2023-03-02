@@ -272,7 +272,7 @@ class RFE_9980(unittest.TestCase):
         response = json.loads(response)
         response=response[0]["_ref"]
         logging.info(response)
-        data={"enable_parental_control": True,"cat_acctname":"infoblox_sdk", "cat_password":"LinWmRRDX0q","category_url":"https://dl.zvelo.com/","pc_zone_name":"pc.com","cat_update_frequency":1,"proxy_url":config.proxy_server_url,"proxy_username":"client","proxy_password":"infobox"}
+        data={"enable_parental_control": True,"cat_acctname":"infoblox_sdk", "cat_password":"LinWmRRDX0q","category_url":"https://dl.zvelo.com/","pc_zone_name":"pc.com","cat_update_frequency":1,"proxy_url":config.proxy_server_url,"proxy_username";"proxyclient","proxy_password":"infobox"}
         res = ib_NIOS.wapi_request('PUT', object_type=response,fields=json.dumps(data))
         logging.info(res)
         restart_the_grid()
