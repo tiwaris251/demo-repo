@@ -1,0 +1,10 @@
+username:admin
+password:infoblox
+proxy_server_url: http://10.197.38.38:8001
+forwarder_ip: 10.39.16.160
+resolver_ip: 10.103.3.10
+proxy_server1: 10.35.210.204
+rad_client_ip: 10.36.1.255
+rad_client_ip_lan: 10.35.1.255
+client_ip: 10.120.23.160
+client_ip2: 10.120.23.220
