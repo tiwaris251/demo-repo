@@ -553,7 +553,7 @@ class RFE_9980(unittest.TestCase):
                 logging.info("Test Case  Execution Completed")
 
 
-:   @pytest.mark.run(order=23)
+   @pytest.mark.run(order=23)
     def test_023_add_32_rpz_test(self):
         print("************************************************")
         print("****  Test cases Related to SSP            *****")
