@@ -1,6 +1,0 @@
-username:admin
-password:infoblox
-proxy_server_url: http://10.197.38.38:8001
-forwarder_ip: 10.39.16.160
-resolver_ip: 10.103.3.10
-proxy_server1: 10.35.210.204
