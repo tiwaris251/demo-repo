@@ -367,7 +367,7 @@ class RFE_9980(unittest.TestCase):
     @pytest.mark.run(order=14)
     def  test_014_Add_the_Subscriber_Site_as_site2_With_IB_FLEX_Member_DCA_Subscriber_Query_count_and_DCA_Blocklist_White_List_Enabled(self):
         logging.info("Addsubscriber site site2 with IB-FLEX DCA Subscriber Query Count and DCA Blocklist whitelist Enable")
-        data={"blocking_ipv4_vip1": "1.1.1.1","blocking_ipv4_vip2": "2.2.2.2","msps":[{"ip_address": config.proxy_server1}],"spms": [{"ip_address": "10.12.11.11"}],"name":"site2","maximum_subscribers":100000,"members":[{"name":config.grid_fqdn}],"nas_gateways":[{"ip_address":config.rad_client_ip,"name":"nas1","shared_secret":"testing123"},{"ip_address":config.rad_client_ip_lan,"name":"nas2","shared_secret":"testing123"}],"dca_sub_query_count":True,"dca_sub_bw_list":True}
+        data={"blocking_ipv4_vip1": "1.1.1.1","blocking_ipv4_vip2": "2.2.2.2","msps":[{"ip_address": config.proxy_server1}],"spms": [{"ip_address": "10.12.11.11"}],"name":"site2","maximum_subscribers":100000,"members":[{"name":config.grid1_master_fqdn}],"nas_gateways":[{"ip_address":config.rad_client_ip,"name":"nas1","shared_secret":"testing123"},{"ip_address":config.rad_client_ip_lan,"name":"nas2","shared_secret":"testing123"}],"dca_sub_query_count":True,"dca_sub_bw_list":True}
         get_ref=ib_NIOS.wapi_request('POST', object_type="parentalcontrol:subscribersite",fields=json.dumps(data))
         logging.info(get_ref)
         print(get_ref)
@@ -403,7 +403,7 @@ class RFE_9980(unittest.TestCase):
     @pytest.mark.run(order=16)
     def test_016_Start_the_subscriber_service_on_members_and_Validate(self):
         logging.info("Start the subscriber service on members and validate")
-        member=[config.grid_fqdn]
+        member=[config.grid1_master_fqdn]
         for mem in member:
             get_ref=ib_NIOS.wapi_request('GET', object_type='member:parentalcontrol?name='+mem)
             get_ref=json.loads(get_ref)
@@ -438,7 +438,7 @@ class RFE_9980(unittest.TestCase):
     def test_017_start_DCA_service_on_Grid_Master_Member(self):
         logging.info("Enable DCA on the IB-FLEX Grid Master member")
         data = {"enable_dns": True, "enable_dns_cache_acceleration": True}
-        DCA_capable=[config.grid_fqdn]
+        DCA_capable=[config.grid1_master_fqdn]
         for mem in DCA_capable:
             grid_ref = mem_ref_string(mem)
             print(grid_ref)
@@ -473,7 +473,7 @@ class RFE_9980(unittest.TestCase):
         print("************************************************")
         logging.info("Adding 32 RPZ zones")
         for i in range(31,-1,-1):
-            data={"fqdn": "rpz"+str(i)+".com","grid_primary":[{"name": config.grid_fqdn,"stealth":False}]}
+            data={"fqdn": "rpz"+str(i)+".com","grid_primary":[{"name": config.grid1_master_fqdn,"stealth":False}]}
             reference1=ib_NIOS.wapi_request('POST', object_type="zone_rp",fields=json.dumps(data))
             print(reference1)
             logging.info("adding RPZ zone ")
@@ -560,7 +560,7 @@ class RFE_9980(unittest.TestCase):
         print("************************************************")
         logging.info("Adding 32 RPZ tests")
         for i in range(31,-1,-1):
-            data={"fqdn": "rpz"+str(i)+".com","grid_primary":[{"name": config.grid_fqdn,"stealth":False}]}
+            data={"fqdn": "rpz"+str(i)+".com","grid_primary":[{"name": config.grid1_master_fqdn,"stealth":False}]}
             reference1=ib_NIOS.wapi_request('POST', object_type="test_rp",fields=json.dumps(data))
             print(reference1)
             logging.info("adding RPZ test ")
